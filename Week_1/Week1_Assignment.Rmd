@@ -1,0 +1,49 @@
+---
+title: "Week1_Assignment"
+author: "Matt Mecoli"
+date: "8/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+I chose the 538 dataset on NBA predictions. 538 primarily uses a relatively simple metric called Elo for its NBA predictions. Essentially, Elo uses the point spread (between two teams), as well as the when and the where of the game, to award points to teams. Interestingly, it's a zero-sum metric, meaning when one team gets Elo points, the other loses them. 
+
+You can read more here https://projects.fivethirtyeight.com/complete-history-of-the-nba/#bucks and find the predictions here: https://projects.fivethirtyeight.com/2020-nba-predictions/. 
+
+```{r cars}
+nba_predictions <- read.csv('data/nba_elo_latest.csv', header=TRUE)
+head(nba_predictions)
+```
+
+## Cleaning up the data
+
+I decided to subset to only the columns directly related to the teams and the Elo predictions (pre- and post-) without the probabilities or other models. Then I renamed the two 'score' columns, and replace values in the 'playoff' column to make the data clearer. 
+
+```{r pressure, echo=FALSE}
+nba_subset <- subset(nba_predictions, select = c(date, season, neutral, playoff, team1, team2, elo1_pre, elo1_post, elo2_pre, elo2_post, score1, score2 ))
+
+colnames(nba_subset) <- c('date', 'season', 'neutral', 'playoff', 'team1', 'team2', 'elo1_pre', 'elo1_post', 'elo2_pre', 'elo2_post', 'team1_score', 'team2_score')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == '', 'no')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == 'p', 'play-in games')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == 'q', 'quarterfinals')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == 's', 'semifinals')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == 'c', 'conference finals')
+
+nba_subset$playoff <- replace(nba_subset$playoff, nba_subset$playoff == 'f', 'finals')
+
+tail(nba_subset)
+```
+
+## Conclusion 
+
+It's much clearer how the relative scores of the two teams in a game affects the Elo points. In the future, I might want to try to come up with my own metric and see how it compares with determining winners against the model using Elo. Additionally, it might be interesting to get the actual game data and see how well the model did.  
