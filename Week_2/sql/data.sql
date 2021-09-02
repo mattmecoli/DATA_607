@@ -1,0 +1,46 @@
+INSERT INTO movies(movie_id, movie_name, movie_year, movie_genre) VALUES 
+(1, 'The Lego Movie', 2014, 'comedy' ),
+(2, 'The Dark Knight', 2008, 'action'), 
+(3, 'Saw', 2004, 'horror'),
+(4, E'The King\'s Speech', 2010, 'drama'),
+(5, 'Parasite', 2019, 'dark comedy'), 
+(6, 'Luca', 2021, 'animated' );
+
+INSERT INTO people(person_id, first_name, last_name, relationship, gender) VALUES 
+(1, 'John', 'Mecoli', 'dad', 'M'),
+(2, 'Daniella', 'Mecoli', 'sister', 'F'), 
+(3, 'Sarah', 'Knight', 'friend', 'F'),
+(4, 'Elijah', 'McCartney', 'friend', 'M'),
+(5, 'Rachel', 'Provoznak', 'co-worker', 'F');
+
+INSERT INTO ratings(rating_id, movie_id, person_id, rating, has_seen) VALUES 
+(1, 1, 1, 8, True),
+(2, 1, 2, 9, True), 
+(3, 1, 3, 8, True),
+(4, 1, 4, 9, True),
+(5, 1, 5, 7, True), 
+(6, 2, 1, 8, True),
+(7, 2, 2, 7, True),
+(8, 2, 3, 6, True), 
+(9, 2, 4, 10, True),
+(10, 2, 5, NULL, False),
+(11, 3, 1, NULL, False),
+(12, 3, 2, NULL, False), 
+(13, 3, 3, 4, True),
+(14, 3, 4, 8, True),
+(15, 3, 5, NULL, False), 
+(16, 4, 1, 9, True),
+(17, 4, 2, NULL, False),
+(18, 4, 3, 6, True), 
+(19, 4, 4, NULL, False),
+(20, 4, 5, 9, True),
+(21, 5, 1, NULL, False),
+(22, 5, 2, NULL, False), 
+(23, 5, 3, 9, True),
+(24, 5, 4, 10, True),
+(25, 5, 5, NULL, False), 
+(26, 6, 1, 7, True),
+(27, 6, 2, 6, True),
+(28, 6, 3, 8, True), 
+(29, 6, 4, NULL, False),
+(30, 6, 5, 7, True);
